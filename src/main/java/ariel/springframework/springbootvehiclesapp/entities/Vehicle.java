@@ -26,6 +26,7 @@ public class Vehicle {
     @Id
     @GeneratedValue(generator = "UUID")
     @UuidGenerator
+    @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
 
@@ -35,14 +36,15 @@ public class Vehicle {
     @Version
     private Integer version;
 
-    @JdbcTypeCode(SqlTypes.SMALLINT)
+    @Enumerated(EnumType.STRING)
     private Make make;
 
     @NotBlank
     private String model;
 
     @NotNull
-    private Year year;
+    @Column(name = "model_year")
+    private Integer modelYear;
 
     @NotBlank
     private String color;

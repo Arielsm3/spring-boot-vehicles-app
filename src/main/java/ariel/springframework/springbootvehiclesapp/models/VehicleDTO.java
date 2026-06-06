@@ -2,6 +2,7 @@ package ariel.springframework.springbootvehiclesapp.models;
 
 import ariel.springframework.springbootvehiclesapp.entities.Make;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -28,7 +29,8 @@ public class VehicleDTO {
 
     private String model;
 
-    private Year year;
+    @Column(name = "model_year")
+    private Integer modelYear;
 
     private String color;
 

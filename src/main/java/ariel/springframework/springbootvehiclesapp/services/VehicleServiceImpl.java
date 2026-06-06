@@ -29,7 +29,7 @@ public class VehicleServiceImpl implements VehicleService {
                 .version(1)
                 .make(Make.NISSAN)
                 .model("Pathfinder")
-                .year(Year.of(2024))
+                .modelYear(2024)
                 .color("Gray")
                 .mileage(21989)
                 .price(new BigDecimal("9899.99"))
@@ -48,7 +48,7 @@ public class VehicleServiceImpl implements VehicleService {
                 .version(vehicle.getVersion())
                 .make(vehicle.getMake())
                 .model(vehicle.getModel())
-                .year(vehicle.getYear())
+                .modelYear(vehicle.getModelYear())
                 .color(vehicle.getColor())
                 .mileage(vehicle.getMileage())
                 .price(vehicle.getPrice())
@@ -82,7 +82,7 @@ public class VehicleServiceImpl implements VehicleService {
         existing.setVersion(vehicle.getVersion());
         existing.setMake(vehicle.getMake());
         existing.setModel(vehicle.getModel());
-        existing.setYear(vehicle.getYear());
+        existing.setModelYear(vehicle.getModelYear());
         existing.setColor(vehicle.getColor());
         existing.setMileage(vehicle.getMileage());
         existing.setPrice(vehicle.getPrice());
@@ -108,8 +108,8 @@ public class VehicleServiceImpl implements VehicleService {
         if(StringUtils.hasText(vehicle.getModel())) {
             existing.setModel(vehicle.getModel());
         }
-        if(vehicle.getYear() != null) {
-            existing.setYear(vehicle.getYear());
+        if(vehicle.getModelYear() != null) {
+            existing.setModelYear(vehicle.getModelYear());
         }
         if(StringUtils.hasText(vehicle.getColor())) {
             existing.setColor(vehicle.getColor());

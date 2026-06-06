@@ -6,6 +6,7 @@ import ariel.springframework.springbootvehiclesapp.models.VehicleDTO;
 import ariel.springframework.springbootvehiclesapp.services.VehicleService;
 import ariel.springframework.springbootvehiclesapp.services.VehicleServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -38,9 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-
-@WebMvcTest(VehicleController.class)
-@ExtendWith(MockitoExtension.class)
+@WebMvcTest
 public class VehicleControllerTest {
 
     @Autowired
@@ -86,7 +85,7 @@ public class VehicleControllerTest {
                 .vin(vehicleToPost.getVin())
                 .make(vehicleToPost.getMake())
                 .model(vehicleToPost.getModel())
-                .year(vehicleToPost.getYear())
+                .modelYear(vehicleToPost.getModelYear())
                 .color(vehicleToPost.getColor())
                 .mileage(vehicleToPost.getMileage())
                 .price(vehicleToPost.getPrice())

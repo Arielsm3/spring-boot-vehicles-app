@@ -1,0 +1,1 @@
+ALTER TABLE vehicle MODIFY COLUMN model_year INT;
