@@ -16,5 +16,4 @@ public interface VehicleRepository extends JpaRepository<Vehicle, UUID> {
 
     Page<Vehicle> findAllByModelAndMake(String model, Make make, Pageable pageable);
 
-
 }
