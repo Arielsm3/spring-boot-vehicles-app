@@ -29,7 +29,7 @@ public class VehicleDTO {
 
     private String model;
 
-    @Column(name = "model_year")
+    //@Column(name = "model_year")
     private Integer modelYear;
 
     private String color;
