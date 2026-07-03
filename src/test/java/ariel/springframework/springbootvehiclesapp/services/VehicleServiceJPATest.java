@@ -218,4 +218,48 @@ public class VehicleServiceJPATest {
 
         verify(vehicleRepository, never()).save(any(Vehicle.class));
     }
+
+    @Test
+    void updateVehicleById_overwritesFieldsUnconditionally() {
+        Vehicle existing = buildValidVehicle();
+
+        VehicleDTO update = VehicleDTO.builder()
+                .vin("1HGCM82633A004353")
+                .make(Make.LAMBORGHINI)
+                .model("Aventador")
+                .modelYear(null)
+                .color(null)
+                .mileage(null)
+                .price(new BigDecimal("615000.00"))
+                .build();
+
+        ArgumentCaptor<Vehicle> vehicleCaptor = ArgumentCaptor.forClass(Vehicle.class);
+
+        given(vehicleRepository.findById(any(UUID.class))).willReturn(Optional.of(existing));
+        given(vehicleRepository.save(any(Vehicle.class))).willReturn(existing);
+        given(vehicleMapper.vehicleToVehicleDto(any(Vehicle.class))).willReturn(buildValidVehicleDTO());
+
+        vehicleServiceJPA.updateVehicleById(UUID.randomUUID(), update);
+
+        verify(vehicleRepository).save(vehicleCaptor.capture());
+        Vehicle saved = vehicleCaptor.getValue();
+
+        assertThat(saved.getModel()).isEqualTo("Aventador");
+        assertThat(saved.getModelYear()).isNull();
+        assertThat(saved.getColor()).isNull();
+        assertThat(saved.getMileage()).isNull();
+    }
+
+    @Test
+    void updateVehicleById_whenNotFound_returnsEmptyAndDoesNotSave() {
+        VehicleDTO dto = buildValidVehicleDTO();
+
+        given(vehicleRepository.findById(any(UUID.class))).willReturn(Optional.empty());
+
+        Optional<VehicleDTO> result = vehicleServiceJPA.updateVehicleById(UUID.randomUUID(), dto);
+
+        assertThat(result).isEmpty();
+
+        verify(vehicleRepository, never()).save(any(Vehicle.class));
+    }
 }
